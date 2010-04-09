@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/sysutils/puppet/files/puppetd.in,v 1.4 2008/07/24 19:19:49 beech Exp $
+#
+# PROVIDE: puppetd
+# REQUIRE: NETWORK
+
+# Add the following lines to /etc/rc.conf to enable puppetd:
+#
+# puppetd_enable="YES"
+
+. %%RC_SUBR%%
+
+name="puppetd"
+rcvar=`set_rcvar`
+
+command="%%PREFIX%%/bin/${name}"
+command_interpreter="%%PREFIX%%/bin/ruby18"
+
+load_rc_config "$name"
+: ${puppetd_enable="NO"}
+: ${puppetd_pid="%%PUPPET_RUNDIR%%/${name}.pid"}
+: ${puppetd_flags="--rundir %%PUPPET_RUNDIR%%"}
+pidfile="$puppetd_pid"
+
+run_rc_command "$1"

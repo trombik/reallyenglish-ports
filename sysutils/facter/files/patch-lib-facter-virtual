@@ -1,0 +1,18 @@
+--- lib/facter/virtual.rb.orig	2009-08-14 15:43:27.000000000 +0900
++++ lib/facter/virtual.rb	2009-08-14 15:44:13.000000000 +0900
+@@ -46,6 +46,15 @@
+                 result = "xen0" 
+             end
+         end
++
++        sysctlexists = system "which sysctl > /dev/null 2>&1"
++        if $?.exitstatus == 0
++            output = %x{sysctl -n security.jail.jailed}.chomp
++            output.each do |p|
++                result = "jail" if p == "1"
++            end
++        end
++
+  
+         if result == "physical"
+             output = Facter::Util::Resolution.exec('lspci')
