@@ -19,7 +19,7 @@ MAKE_JOBS_SAFE=	yes
 LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre \
 		apr-1.3:${PORTSDIR}/devel/apr
 
-USE_APACHE=	2.0+
+USE_APACHE=	2.2+
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
 AP_GENPLIST=	yes
