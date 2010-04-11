@@ -52,7 +52,7 @@ PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
 PKGNAMESUFFIX=	-${SLAVE_PORT_MPM}
 .else
 .   if ${WITH_MPM} != "prefork"
-PKGNAMESUFFIX=		-${WITH_MPM:L}
+#PKGNAMESUFFIX=		-${WITH_MPM:L}
 .   if ${WITH_MPM} != "itk"
 WITH_THREADS=		yes
 WITH_THREADS_MODULES=	yes
