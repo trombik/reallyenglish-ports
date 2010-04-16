@@ -31,6 +31,7 @@ RUBYGEM_AUTOPLIST=	yes
 
 PLIST_FILES=	bin/chef-client \
 		bin/shef \
+		bin/chef-solo \
 		bin/knife
 
 SUB_LIST=	RUBY=${RUBY}
