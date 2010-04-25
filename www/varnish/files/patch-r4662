@@ -1,0 +1,81 @@
+Index: bin/varnishtest/tests/b00000.vtc
+===================================================================
+--- bin/varnishtest/tests/b00000.vtc (revision 4456)
++++ bin/varnishtest/tests/b00000.vtc (revision 4662)
+@@ -11,4 +11,6 @@
+ 
+ varnish v1 -arg "-smalloc,1m" -vcl+backend {} -start
++
++varnish v1 -cliok "param.set diag_bitmap 0x2"
+ 
+ varnish v1 -expect n_object == 0
+Index: bin/varnishtest/tests/r00679.vtc
+===================================================================
+--- bin/varnishtest/tests/r00679.vtc (revision 4662)
++++ bin/varnishtest/tests/r00679.vtc (revision 4662)
+@@ -0,0 +1,16 @@
++# $Id$
++
++test "pass + HEAD"
++
++server s1 {
++	rxreq
++	expect req.request == "HEAD"
++	txresp 
++} -start
++
++varnish v1 -vcl+backend {} -start
++
++client c1 {
++	txreq -req HEAD -hdr "Cookie: foo=bar"
++	rxresp -no_obj
++} -run
+Index: bin/varnishtest/vtc_http.c
+===================================================================
+--- bin/varnishtest/vtc_http.c (revision 4635)
++++ bin/varnishtest/vtc_http.c (revision 4662)
+@@ -468,4 +468,5 @@
+ {
+ 	struct http *hp;
++	int has_obj = 1;
+ 
+ 	(void)cmd;
+@@ -477,9 +478,15 @@
+ 
+ 	for(; *av != NULL; av++)
+-		vtc_log(hp->vl, 0, "Unknown http rxresp spec: %s\n", *av);
++		if (!strcmp(*av, "-no_obj"))
++			has_obj = 0;
++		else
++			vtc_log(hp->vl, 0,
++			    "Unknown http rxresp spec: %s\n", *av);
+ 	vtc_log(hp->vl, 3, "rxresp");
+ 	http_rxhdr(hp);
+ 	http_splitheader(hp, 0);
+-	if (!strcmp(hp->resp[1], "200"))
++	if (!has_obj)
++		;
++	else if (!strcmp(hp->resp[1], "200"))
+ 		http_swallow_body(hp, hp->resp, 1);
+ 	else
+Index: bin/varnishd/cache_center.c
+===================================================================
+--- bin/varnishd/cache_center.c (revision 4650)
++++ bin/varnishd/cache_center.c (revision 4662)
+@@ -867,4 +867,5 @@
+ 	http_Setup(sp->wrk->bereq, sp->wrk->ws);
+ 	http_FilterHeader(sp, HTTPH_R_FETCH);
++	http_ForceGet(sp->wrk->bereq);
+ 	sp->wrk->connect_timeout = 0;
+ 	sp->wrk->first_byte_timeout = 0;
+@@ -1051,8 +1052,7 @@
+ 	SHA256_Final(sp->digest, sp->wrk->sha256ctx);
+ 
+-	if (!strcmp(sp->http->hd[HTTP_HDR_REQ].b, "HEAD")) {
++	if (!strcmp(sp->http->hd[HTTP_HDR_REQ].b, "HEAD")) 
+ 		sp->wantbody = 0;
+-		http_ForceGet(sp->http);
+-	} else
++	else
+ 		sp->wantbody = 1;
+ 

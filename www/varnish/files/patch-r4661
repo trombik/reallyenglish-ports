@@ -1,0 +1,35 @@
+Index: /trunk/varnish-cache/bin/varnishd/varnishd.c
+===================================================================
+--- bin/varnishd/varnishd.c (revision 4648)
++++ bin/varnishd/varnishd.c (revision 4661)
+@@ -675,4 +675,6 @@
+ 		AZ(varnish_daemon(1, 0));
+ 
++	VSL_MgtPid();
++
+ 	if (pfh != NULL && vpf_write(pfh))
+ 		fprintf(stderr, "NOTE: Could not write PID file\n");
+Index: /trunk/varnish-cache/bin/varnishd/shmlog.c
+===================================================================
+--- bin/varnishd/shmlog.c (revision 4563)
++++ bin/varnishd/shmlog.c (revision 4661)
+@@ -414,2 +414,9 @@
+ 	params = pp;
+ }
++
++void
++VSL_MgtPid(void)
++{
++
++	loghead->master_pid = getpid();
++}
+Index: /trunk/varnish-cache/bin/varnishd/common.h
+===================================================================
+--- bin/varnishd/common.h (revision 4481)
++++ bin/varnishd/common.h (revision 4661)
+@@ -44,4 +44,5 @@
+ /* shmlog.c */
+ void VSL_MgtInit(const char *fn, unsigned size);
++void VSL_MgtPid(void);
+ extern struct varnish_stats *VSL_stats;
+ 
