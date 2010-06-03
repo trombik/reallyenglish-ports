@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/net-mgmt/icinga/files/pkg-deinstall.in,v 1.1 2006/01/09 00:54:01 edwin Exp $
+#
+
+ICINGADIR=%%ICINGADIR%%
+ICINGAUSER=%%ICINGAUSER%%
+ICINGAGROUP=%%ICINGAGROUP%%
+
+if [ "$2" = "POST-DEINSTALL" ]; then
+  if /usr/sbin/pw group show "${ICINGAGROUP}" 2>&1 >/dev/null; then
+    echo "You should manually remove the \"${ICINGAGROUP}\" group."
+  fi
+
+  if /usr/sbin/pw user show "${ICINGAUSER}" 2>&1 >/dev/null; then
+    echo "You should manually remove the \"${ICINGAUSER}\" user."
+  fi
+
+  if [ -e "${ICINGADIR}" ]; then
+    echo "You should manually remove the \"${ICINGADIR}\" directory."
+  fi
+fi

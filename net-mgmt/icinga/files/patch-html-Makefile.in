@@ -1,0 +1,103 @@
+--- html/Makefile.in.orig	2010-03-03 18:29:37.000000000 +0900
++++ html/Makefile.in	2010-05-24 16:45:07.000000000 +0900
+@@ -34,64 +34,64 @@
+ devclean: distclean
+ 
+ install:
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/media
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/stylesheets
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/stylesheets/interface
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/contexthelp
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/en
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/de
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/images
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/images/flags
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images/logos
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images/interface
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/includes
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/js
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/ssi
+-	$(INSTALL) -m 664 $(INSTALL_OPTS) robots.txt $(DESTDIR)$(HTMLDIR)
+-	$(INSTALL) -m 664 $(INSTALL_OPTS) docs/robots.txt $(DESTDIR)$(HTMLDIR)/docs
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/media
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/stylesheets
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/stylesheets/interface
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/contexthelp
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/en
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/de
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/images
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/images/flags
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images/logos
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images/interface
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/includes
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/js
++	$(INSTALL) -m 755 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/ssi
++	$(INSTALL) -m 644 $(INSTALL_OPTS) robots.txt $(DESTDIR)$(HTMLDIR)
++	$(INSTALL) -m 644 $(INSTALL_OPTS) docs/robots.txt $(DESTDIR)$(HTMLDIR)/docs
+ 	for file in *.html; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR); done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR); done
+ 	for file in *.php; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR); done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR); done
+ #	for file in media/*.wav; \
+-#	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/media; done
++#	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/media; done
+ 	for file in stylesheets/*.css; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/stylesheets; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/stylesheets; done
+ 	for file in stylesheets/interface/*.css; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/stylesheets/interface; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/stylesheets/interface; done
+ 	for file in contexthelp/*.html; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/contexthelp; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/contexthelp; done
+ 	for file in docs/*.html; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs; done
+ 	for file in docs/en/*.html; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/en; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/en; done
+ 	for file in docs/de/*.html; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/de; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/de; done
+ 	for file in docs/images/*.*; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/images; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/images; done
+ 	for file in docs/images/flags/*.*; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/images/flags; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/docs/images/flags; done
+ 	for file in images/*.png; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
+ 	for file in images/*.jpg; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
+ 	for file in images/*.gif; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
+ 	for file in images/*.ico; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
+ 	for file in images/logos/*.*; \
+ 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images/logos; done
+ 	for file in images/interface/*.gif; \
+ 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images/interface; done
+ 	for file in images/interface/*.jpg; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images/interface; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images/interface; done
+ 	for file in includes/*.*; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/includes; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/includes; done
+ 	for file in js/*.js; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/js; done
++	do $(INSTALL) -m 644 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/js; done
+ 
+ install-unstripped:
+ 	$(MAKE) install
