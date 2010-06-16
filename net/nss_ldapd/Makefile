@@ -96,6 +96,9 @@ post-extract:
 	@${REINPLACE_CMD} -e 's/^NSS_VERS = .*/NSS_VERS = 1/;s/libnss_ldap\.so/nss_ldap.so/' ${WRKSRC}/nss/Makefile.in
 	@${REINPLACE_CMD} -e 's/$$(DESTDIR)$$(NSS_LDAP_PATH_CONF)/$$(DESTDIR)$$(NSS_LDAP_PATH_CONF).sample/' ${WRKSRC}/Makefile.in
 
+post-configure:
+	@${REINPLACE_CMD} -e 's/^\(CFLAGS .*\)-O2 \(.*\)$$/\1 -O0 \2/' ${WRKSRC}/nss/Makefile
+
 post-install:
 	@${ECHO_MSG}
 	@${ECHO_MSG} =====================================================================
