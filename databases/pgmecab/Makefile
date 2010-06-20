@@ -14,6 +14,7 @@ MAINTAINER=	tomoyukis@smer.jp.reallyenglish.com
 COMMENT=	Mecab for Postgresql
 
 LIB_DEPENDS=	mecab.1:${PORTSDIR}/japanese/mecab
+RUN_DEPENDS=	${LOCALBASE}/lib/mecab/dic/ipadic/matrix.bin:${PORTSDIR}/japanese/mecab-ipadic
 
 USE_BZIP2=	Yes
 USE_PGSQL=	Yes
