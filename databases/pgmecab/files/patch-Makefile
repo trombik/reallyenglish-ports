@@ -1,0 +1,11 @@
+--- ./Makefile.orig	2006-02-15 00:37:12.000000000 +0900
++++ ./Makefile	2010-06-20 06:28:42.000000000 +0900
+@@ -4,7 +4,7 @@
+ #
+ #-------------------------------------------------------------------------
+ # MECAB_CONFIG_PATH	= /usr/local/mecab/bin/mecab-config
+-MECAB_CONFIG_PATH	= 
++MECAB_CONFIG_PATH	= /usr/local/bin/mecab-config
+ 
+ SRCS		= pgmecab.c
+ 

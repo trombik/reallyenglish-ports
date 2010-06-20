@@ -1,0 +1,4 @@
+@comment $FreeBSD$
+lib/postgresql/pgmecab.so
+share/doc/postgresql/contrib/README.pgmecab
+share/postgresql/contrib/pgmecab.sql
