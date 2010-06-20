@@ -2,3 +2,7 @@
 lib/postgresql/pgmecab.so
 share/doc/postgresql/contrib/README.pgmecab
 share/postgresql/contrib/pgmecab.sql
+@dirrmtry share/doc/postgresql/contrib
+@dirrmtry share/doc/postgresql
+@dirrmtry postgresql/contrib
+@dirrmtry postgresql
