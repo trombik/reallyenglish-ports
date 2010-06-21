@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	chef
-PORTVERSION=	0.8.8
+PORTVERSION=	0.8.16
 CATEGORIES=	sysutils
 MASTER_SITES=	http://gemcutter.org/gems/
 
