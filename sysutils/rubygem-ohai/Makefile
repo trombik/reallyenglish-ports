@@ -30,4 +30,7 @@ PLIST_FILES=	bin/ohai
 # we care about not passing -A to allow HTTP redirects
 FETCH_ARGS=     -pRr
 
+post-install:
+	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-plugins-freebsd-virtualization.rb.patch
+	@${FIND} ${PREFIX}/${GEM_LIB_DIR} -name "*.orig" -delete
 .include <bsd.port.mk>
