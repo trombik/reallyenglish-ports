@@ -1,4 +1,5 @@
 @comment $FreeBSD$
+sbin/ezjail_available_ip
 sbin/rems_generic_critical
 sbin/rems_generic_ok
 sbin/rems_generic_unknown
