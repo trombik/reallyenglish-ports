@@ -17,6 +17,7 @@ COMMENT=	Local tools at reallyenglish, not available for public
 
 RUN_DEPENDS=	${LOCALBASE}/sbin/send_nsca:${PORTSDIR}/net-mgmt/nsca-client
 
+USE_PERL5=	Yes
 MAKE_ARGS=	DESTDIR=${PREFIX}
 
 .include <bsd.port.mk>
