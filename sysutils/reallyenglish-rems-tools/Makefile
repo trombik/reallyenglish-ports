@@ -7,7 +7,7 @@
 
 PORTNAME=	reallyenglish-rems-tools
 PORTVERSION=	0.6
-#PORTREVISION=	1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dist.reallyenglish.com/${PORTNAME}/
 EXTRACT_SUFX=	.tgz
@@ -19,5 +19,6 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/send_nsca:${PORTSDIR}/net-mgmt/nsca-client
 
 USE_PERL5=	Yes
 MAKE_ARGS=	DESTDIR=${PREFIX}
+USE_RC_SUBR=	varnisherrorlog
 
 .include <bsd.port.mk>
