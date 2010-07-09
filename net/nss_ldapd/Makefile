@@ -2,12 +2,11 @@
 # Date created:				23/7/2009
 # Whom:					melifaro@ipfw.ru
 #
-# $FreeBSD: ports/net/nss_ldapd/Makefile,v 1.3 2010/01/09 22:45:55 pgollucci Exp $
+# $FreeBSD: ports/net/nss_ldapd/Makefile,v 1.4 2010/05/14 13:23:00 pav Exp $
 #
 
 PORTNAME=		nss_ldapd
-PORTVERSION=		0.7.1
-PORTREVISION=	1
+PORTVERSION=		0.7.3
 CATEGORIES=		net
 MASTER_SITES=		http://arthurdejong.org/nss-pam-ldapd/ \
 			http://static.ipfw.ru/files/
@@ -28,6 +27,9 @@ NSLCD_SOCKET?=		/var/run/nslcd.ctl
 OPTIONS=		NSS_COMPAT	"Enable nss_ldap compatibility" on \
 			SASL		"Enable SASL" off \
 			PAM		"Build pam_ldap" on
+
+USERS=			nslcd
+GROUPS=			nslcd
 
 .include <bsd.port.pre.mk>
 
