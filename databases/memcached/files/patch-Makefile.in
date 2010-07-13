@@ -1,0 +1,16 @@
+--- ./Makefile.in.orig	2009-11-27 15:34:57.000000000 +0900
++++ ./Makefile.in	2010-07-12 19:35:27.000000000 +0900
+@@ -764,13 +764,6 @@
+ @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(memcached_debug_CFLAGS) $(CFLAGS) -c -o memcached_debug-sasl_defs.obj `if test -f 'sasl_defs.c'; then $(CYGPATH_W) 'sasl_defs.c'; else $(CYGPATH_W) '$(srcdir)/sasl_defs.c'; fi`
+ install-pkgincludeHEADERS: $(pkginclude_HEADERS)
+ 	@$(NORMAL_INSTALL)
+-	test -z "$(pkgincludedir)" || $(MKDIR_P) "$(DESTDIR)$(pkgincludedir)"
+-	@list='$(pkginclude_HEADERS)'; for p in $$list; do \
+-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+-	  f=$(am__strip_dir) \
+-	  echo " $(pkgincludeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(pkgincludedir)/$$f'"; \
+-	  $(pkgincludeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(pkgincludedir)/$$f"; \
+-	done
+ 
+ uninstall-pkgincludeHEADERS:
+ 	@$(NORMAL_UNINSTALL)
