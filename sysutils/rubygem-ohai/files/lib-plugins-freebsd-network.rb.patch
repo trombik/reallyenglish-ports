@@ -1,0 +1,28 @@
+--- lib/ohai/plugins/freebsd/network.rb.orig	2010-07-26 17:45:27.000000000 +0900
++++ lib/ohai/plugins/freebsd/network.rb	2010-07-26 18:11:38.000000000 +0900
+@@ -82,6 +82,18 @@
+ 
+ network["interfaces"] = iface
+ 
++# when default interface cannot be determined for some reason (i.e. jail)
++# XXX doesn't work if the jail has multiple IP addresses
++if network[:default_interface] == ""
++  network["interfaces"].keys.sort.each do |iface|
++    network["interfaces"][iface]["addresses"].keys.each do |addr|
++      if network["interfaces"][iface]["addresses"][addr]["family"] =~ /^inet6?$/
++        network[:default_interface] = iface
++      end
++    end
++  end
++end
++
+ net_counters = Mash.new
+ # From netstat(1), not sure of the implications:
+ # Show the state of all network interfaces or a single interface
+@@ -109,4 +121,4 @@
+   end
+ end
+ 
+-counters[:network][:interfaces] = net_counters
+\ No newline at end of file
++counters[:network][:interfaces] = net_counters
