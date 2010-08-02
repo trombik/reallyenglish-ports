@@ -23,8 +23,6 @@ RUN_DEPENDS=	rsyslog>=${PORTVERSION}:${PORTSDIR}/sysutils/rsyslog4
 PLIST=		${.CURDIR}/pkg-plist
 .endif
 
-NO_LATEST_LINK=	yes
-
 CONFLICTS=	rsyslog-[!4].[0-9]*
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
