@@ -7,6 +7,7 @@
 
 PORTNAME=	ohai
 PORTVERSION=	0.5.4
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -29,6 +30,7 @@ PLIST_FILES=	bin/ohai
 post-install:
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-plugins-freebsd-virtualization.rb.patch
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-plugins-freebsd-network.rb.patch
+	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-ohai-plugins-network.patch
 	@${FIND} ${PREFIX}/${GEM_LIB_DIR} -name "*.orig" -delete
 
 .include <bsd.port.mk>

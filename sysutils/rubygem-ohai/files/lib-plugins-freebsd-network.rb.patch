@@ -19,10 +19,3 @@
  net_counters = Mash.new
  # From netstat(1), not sure of the implications:
  # Show the state of all network interfaces or a single interface
-@@ -109,4 +121,4 @@
-   end
- end
- 
--counters[:network][:interfaces] = net_counters
-\ No newline at end of file
-+counters[:network][:interfaces] = net_counters

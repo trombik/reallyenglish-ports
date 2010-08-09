@@ -1,0 +1,28 @@
+--- lib/ohai/plugins/network.rb.orig    2010-08-09 13:49:56.000000000 +0900
++++ lib/ohai/plugins/network.rb 2010-08-09 14:37:52.000000000 +0900
+@@ -27,12 +27,22 @@
+ require_plugin "#{os}::network"
+ 
+ def find_ip_and_mac(addresses)
+-  ip = nil; mac = nil
++  ip = nil; mac = nil; ip_so_far = nil;
+   addresses.keys.each do |addr|
+-    ip = addr if addresses[addr]["family"].eql?("inet")
+     mac = addr if addresses[addr]["family"].eql?("lladdr")
+-    break if (ip and mac)
+   end
++  addresses.keys.each do |addr|
++    if addresses[addr]["family"].eql?("inet")
++      require "ipaddr"
++      mask = IPAddr.new(addresses[addr]["netmask"]).to_i.to_s(2).count("1")
++      if not ip_so_far
++        ip_so_far = { :ip => addr, :mask => mask }
++      elsif ip_so_far[:mask] > mask
++        ip_so_far = { :ip => addr, :mask => mask }
++      end
++    end
++  end
++  ip = ip_so_far[:ip]
+   [ip, mac]
+ end
+ 
