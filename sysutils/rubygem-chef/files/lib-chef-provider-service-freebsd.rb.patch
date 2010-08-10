@@ -1,0 +1,13 @@
+diff --git a/chef/lib/chef/provider/service/freebsd.rb b/chef/lib/chef/provider/service/freebsd.rb
+index 209f1ca..ab72382 100644
+--- lib/chef/provider/service/freebsd.rb
++++ lib/chef/provider/service/freebsd.rb
+@@ -42,7 +42,7 @@ class Chef
+             Chef::Log.debug("#{@new_resource} supports status, checking state")
+ 
+             begin
+-              if run_command(:command => "#{@init_command} status") == 0
++              if run_command(:command => "#{@init_command} onestatus") == 0
+                 @current_resource.running true
+               end
+             rescue Chef::Exceptions::Exec

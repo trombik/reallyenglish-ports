@@ -7,13 +7,14 @@
 
 PORTNAME=	chef
 PORTVERSION=	0.8.16
+PORTREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	http://gemcutter.org/gems/
+MASTER_SITES=	RG
 
 MAINTAINER=	renchap@cocoa-x.com
 COMMENT=	A systems integration framework. Contains the client part
 
-BUILD_DEPENDS=	rubygem-mixlib-log>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-log \
+RUN_DEPENDS=	rubygem-mixlib-log>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-mixlib-config>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-config \
 		rubygem-mixlib-cli>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-cli \
 		rubygem-mixlib-authentication>=1.1.2:${PORTSDIR}/devel/rubygem-mixlib-authentication \
@@ -23,7 +24,6 @@ BUILD_DEPENDS=	rubygem-mixlib-log>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-erubis>=0.0.0:${PORTSDIR}/www/rubygem-erubis \
 		rubygem-bunny>=0.6.0:${PORTSDIR}/net/rubygem-bunny \
 		rubygem-ohai>=0.5.0:${PORTSDIR}/sysutils/rubygem-ohai
-RUN_DEPENDS=	${BUILD_DEPENDS}
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
@@ -37,11 +37,9 @@ PLIST_FILES=	bin/chef-client \
 SUB_LIST=	RUBY=${RUBY}
 USE_RC_SUBR=	chef_client
 
-# we care about not passing -A to allow HTTP redirects
-FETCH_ARGS=	-pRr
-
 post-install:
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-package-portupgrade.rb.patch
+	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-service-freebsd.rb.patch
 	@${FIND} ${PREFIX}/${GEM_LIB_DIR} -name "*.orig" -delete
 
 .include <bsd.port.mk>
