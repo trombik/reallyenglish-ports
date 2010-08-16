@@ -67,7 +67,7 @@ WITHOUT_PTHREADS=	yes
 
 .if defined(WITHOUT_PTHREADS)
 CONFIGURE_ARGS+=--disable-pthread
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
+#PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
 .else
 LDFLAGS+=	${PTHREAD_LIBS}
 CONFIGURE_ARGS+=--enable-pthread
