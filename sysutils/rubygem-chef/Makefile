@@ -7,7 +7,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	0.8.16
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -23,7 +23,8 @@ RUN_DEPENDS=	rubygem-mixlib-log>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-moneta>=0.6.0:${PORTSDIR}/devel/rubygem-moneta \
 		rubygem-erubis>=0.0.0:${PORTSDIR}/www/rubygem-erubis \
 		rubygem-bunny>=0.6.0:${PORTSDIR}/net/rubygem-bunny \
-		rubygem-ohai>=0.5.0:${PORTSDIR}/sysutils/rubygem-ohai
+		rubygem-ohai>=0.5.0:${PORTSDIR}/sysutils/rubygem-ohai \
+		bsdadminscripts>0:${PORTSDIR}/sysutils/bsdadminscripts
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
@@ -40,6 +41,9 @@ USE_RC_SUBR=	chef_client
 post-install:
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-package-portupgrade.rb.patch
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-service-freebsd.rb.patch
+	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-package-pkgupgrade.rb.patch
+	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-providers.rb
+	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-platform.patch
 	@${FIND} ${PREFIX}/${GEM_LIB_DIR} -name "*.orig" -delete
 
 .include <bsd.port.mk>

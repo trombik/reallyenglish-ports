@@ -1,0 +1,130 @@
+--- /dev/null	2010-11-02 15:36:20.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2010-11-02 15:02:05.000000000 +0900
+@@ -0,0 +1,127 @@
++#
++# Authors:: Bryan McLellan (btm@loftninjas.org)
++#           Matthew Landauer (matthew@openaustralia.org)
++# Copyright:: Copyright (c) 2009 Bryan McLellan, Matthew Landauer
++# License:: Apache License, Version 2.0
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++require 'chef/provider/package'
++require 'chef/mixin/command'
++require 'chef/resource/package'
++
++class Chef
++  class Provider
++    class Package
++      class PkgUpgrade < Chef::Provider::Package
++
++        def initialize(*args)
++          super
++          @current_resource = Chef::Resource::Package.new(@new_resource.name)
++        end
++
++        def current_installed_version
++          command = "pkg_info -E \"#{package_name_without_version}*\""
++          status = popen4(command) do |pid, stdin, stdout, stderr|
++            stdout.each do |line|
++              case line
++              when /^#{package_name_without_version}-(.+)/
++                return $1
++              end
++            end
++          end
++          unless status.exitstatus == 0 || status.exitstatus == 1
++            raise Chef::Exceptions::Package, "#{command} failed - #{status.inspect}!"
++          end
++          nil
++        end
++
++        def ports_candidate_version
++          command = "pkg_upgrade -n #{package_name}"
++          status = popen4(command, :environment => { "PACKAGEROOT" => @new_resource.source }) do |pid, stdin, stdout, stderr|
++            stdout.each do |line|
++              case line
++              when /^Install <#{package_name_without_version}-(.+)>/
++                return $1
++              when /^Update <#{package_name_without_version}-[^>]+> to <#{package_name_without_version}-([^>]+)>/
++                return $1
++              end
++            end
++          end
++          unless status.exitstatus == 0 || status.exitstatus == 1
++            raise Chef::Exceptions::Package, "#{command} failed - #{status.inspect}!"
++          end
++        end
++
++        def load_current_resource
++          @current_resource.package_name(@new_resource.package_name)
++
++          @current_resource.version(current_installed_version)
++          Chef::Log.debug("Current version is #{@current_resource.version}") if @current_resource.version
++
++          @candidate_version = ports_candidate_version
++          Chef::Log.debug("Ports candidate version is #{@candidate_version}") if @candidate_version
++
++          @current_resource
++        end
++
++        # The name of the package as understood by pkg_upgrade (category/name)
++        def package_name
++          @new_resource.package_name
++        end
++
++        def package_name_without_version
++          @new_resource.package_name.split(/\//, 2).last
++        end
++
++        def install_package(name, version)
++          unless @current_resource.version
++            case @new_resource.source
++            when /^http/, /^ftp/
++              run_command_with_systems_locale(
++                :command => "pkg_upgrade #{package_name}",
++                :environment => { "PACKAGEROOT" => @new_resource.source }
++              )
++              Chef::Log.info("Installed package #{package_name} from: #{@new_resource.source}")
++            when /^\//
++              run_command_with_systems_locale(
++                :command => "pkg_add #{@new_resource.name}",
++                :environment => { "PACKAGES" => @new_resource.source }
++              )
++              Chef::Log.info("Installed package #{@new_resource.name} from: #{@new_resource.source}")
++            else
++              run_command_with_systems_locale(
++                :command => "pkg_upgrade #{package_name}"
++              )
++              Chef::Log.info("Installed package #{package_name}")
++            end
++          end
++        end
++
++        def remove_package(name, version)
++          # a version is mandatory
++          if version
++            run_command_with_systems_locale(
++              :command => "pkg_delete #{package_name_without_version}-#{version}"
++            )
++          else
++            run_command_with_systems_locale(
++              :command => "pkg_delete #{package_name_without_version}-#{@current_resource.version}"
++            )
++          end
++        end
++      end
++    end
++  end
++end
