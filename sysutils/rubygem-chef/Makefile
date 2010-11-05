@@ -39,7 +39,6 @@ SUB_LIST=	RUBY=${RUBY}
 USE_RC_SUBR=	chef_client
 
 post-install:
-	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-package-portupgrade.rb.patch
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-service-freebsd.rb.patch
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-package-pkgupgrade.rb.patch
 	@${PATCH} -p0 -d ${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-providers.rb
