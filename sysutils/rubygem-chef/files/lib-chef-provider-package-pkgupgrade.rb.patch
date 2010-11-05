@@ -1,6 +1,6 @@
---- /dev/null	2010-11-05 13:58:39.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2010-11-05 13:58:36.000000000 +0900
-@@ -0,0 +1,131 @@
+--- /dev/null	2010-11-05 21:51:04.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2010-11-05 21:53:11.000000000 +0900
+@@ -0,0 +1,134 @@
 +#
 +# Authors:: Bryan McLellan (btm@loftninjas.org)
 +#           Matthew Landauer (matthew@openaustralia.org)
@@ -52,7 +52,7 @@
 +
 +        def ports_candidate_version
 +          command = "pkg_upgrade -n #{package_name}"
-+          status = popen4(command, :environment => { "PACKAGEROOT" => @new_resource.source }) do |pid, stdin, stdout, stderr|
++          status = popen4(command, :environment => { "PACKAGEROOT" => @new_resource.source, "PACKAGESITE_MIRRORS" => @new_resource.source }) do |pid, stdin, stdout, stderr|
 +            stdout.each do |line|
 +              case line
 +              when /^Install <#{package_name_without_version}-(.+)>/
@@ -98,7 +98,10 @@
 +            when /^http/, /^ftp/
 +              run_command_with_systems_locale(
 +                :command => "pkg_upgrade #{package_name}",
-+                :environment => { "PACKAGEROOT" => @new_resource.source }
++                :environment => {
++                  "PACKAGEROOT" => @new_resource.source,
++                  "PACKAGESITE_MIRRORS" => @new_resource.source
++                }
 +              )
 +              Chef::Log.info("Installed package #{package_name} from: #{@new_resource.source}")
 +            when /^\//
