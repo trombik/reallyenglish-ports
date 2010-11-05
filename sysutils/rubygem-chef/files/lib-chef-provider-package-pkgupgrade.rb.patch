@@ -51,7 +51,7 @@
 +        end
 +
 +        def ports_candidate_version
-+          command = "pkg_upgrade -n #{package_name}"
++          command = "pkg_upgrade -n --clean #{package_name}"
 +          status = popen4(command, :environment => { "PACKAGEROOT" => @new_resource.source, "PACKAGESITE_MIRRORS" => @new_resource.source }) do |pid, stdin, stdout, stderr|
 +            stdout.each do |line|
 +              case line
@@ -97,7 +97,7 @@
 +            case @new_resource.source
 +            when /^http/, /^ftp/
 +              run_command_with_systems_locale(
-+                :command => "pkg_upgrade #{package_name}",
++                :command => "pkg_upgrade --clean #{package_name}",
 +                :environment => {
 +                  "PACKAGEROOT" => @new_resource.source,
 +                  "PACKAGESITE_MIRRORS" => @new_resource.source
@@ -112,7 +112,7 @@
 +              Chef::Log.info("Installed package #{@new_resource.name} from: #{@new_resource.source}")
 +            else
 +              run_command_with_systems_locale(
-+                :command => "pkg_upgrade #{package_name}"
++                :command => "pkg_upgrade --clean #{package_name}"
 +              )
 +              Chef::Log.info("Installed package #{package_name}")
 +            end
