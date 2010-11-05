@@ -1,6 +1,6 @@
---- /dev/null	2010-11-02 15:36:20.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2010-11-02 15:02:05.000000000 +0900
-@@ -0,0 +1,127 @@
+--- /dev/null	2010-11-05 13:58:39.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2010-11-05 13:58:36.000000000 +0900
+@@ -0,0 +1,131 @@
 +#
 +# Authors:: Bryan McLellan (btm@loftninjas.org)
 +#           Matthew Landauer (matthew@openaustralia.org)
@@ -85,7 +85,11 @@
 +        end
 +
 +        def package_name_without_version
-+          @new_resource.package_name.split(/\//, 2).last
++          # when name contains trailing digits, discard them.
++          # this is the case when @new_resource.package_name is "sysutils/rsyslog4"
++          # pkg_upgrade supports foo/bar1 style package name, but INDEX only contains bar-1.0
++          name = @new_resource.package_name.split(/\//, 2).last
++          return name.sub(/\d+$/, '')
 +        end
 +
 +        def install_package(name, version)
