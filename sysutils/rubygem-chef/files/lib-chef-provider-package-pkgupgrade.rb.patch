@@ -1,5 +1,5 @@
---- /dev/null	2010-11-08 10:33:23.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2010-11-08 10:39:38.000000000 +0900
+--- /dev/null	2010-11-08 16:00:00.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2010-11-08 16:08:30.000000000 +0900
 @@ -0,0 +1,138 @@
 +#
 +# Authors:: Bryan McLellan (btm@loftninjas.org)
@@ -93,7 +93,7 @@
 +
 +          # openldap24-client -> openldap-client
 +          name.sub!(/\d+-(client|server)$/, '-\1')
-+
++          return name
 +        end
 +
 +        def install_package(name, version)
