@@ -1,6 +1,6 @@
---- /dev/null	2010-11-24 15:33:00.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2010-11-24 15:39:26.000000000 +0900
-@@ -0,0 +1,146 @@
+--- /dev/null	2010-11-24 17:00:45.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2010-11-24 17:03:35.000000000 +0900
+@@ -0,0 +1,156 @@
 +#
 +# Authors:: Bryan McLellan (btm@loftninjas.org)
 +#           Matthew Landauer (matthew@openaustralia.org)
@@ -51,20 +51,30 @@
 +        end
 +
 +        def ports_candidate_version
++          candidate = nil
 +          command = "pkg_upgrade -n --clean #{package_name}"
 +          status = popen4(command, :environment => { "PACKAGEROOT" => @new_resource.source, "PACKAGESITE_MIRRORS" => @new_resource.source }) do |pid, stdin, stdout, stderr|
 +            stdout.each do |line|
++                Chef::Log.debug(line)
 +              case line
 +              when /^Install <#{package_name_without_version}-(.+)>/
-+                return $1
++                candidate = $1
 +              when /^Update <#{package_name_without_version}-[^>]+> to <#{package_name_without_version}-([^>]+)>/
-+                return $1
++                candidate = $1
 +              end
 +            end
++            stderr.each do |line|
++              Chef::Log.debug(line)
++            end
++          end
++          unless candidate
++            Chef::Log.error("cannot find candidate package for #{package_name_without_version}")
++            raise Chef::Exceptions::Package, "pkg_upgrade could not find candidate package"
 +          end
 +          unless status.exitstatus == 0 || status.exitstatus == 1
 +            raise Chef::Exceptions::Package, "#{command} failed - #{status.inspect}!"
 +          end
++          return candidate
 +        end
 +
 +        def load_current_resource
