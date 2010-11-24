@@ -1,6 +1,6 @@
---- /dev/null	2010-11-08 16:00:00.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2010-11-08 16:08:30.000000000 +0900
-@@ -0,0 +1,138 @@
+--- /dev/null	2010-11-24 15:33:00.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2010-11-24 15:39:26.000000000 +0900
+@@ -0,0 +1,146 @@
 +#
 +# Authors:: Bryan McLellan (btm@loftninjas.org)
 +#           Matthew Landauer (matthew@openaustralia.org)
@@ -89,7 +89,15 @@
 +          # this is the case when @new_resource.package_name is "sysutils/rsyslog4"
 +          # pkg_upgrade supports foo/bar1 style package name, but INDEX only contains bar-1.0
 +          name = @new_resource.package_name.split(/\//, 2).last
-+          name.sub!(/\d+$/, '')
++
++          #
++          case name
++          when /-nox11$/
++              # as 11 in "foo-nox11" is not version postfix,
++              # do not remove it
++          else
++              name.sub!(/\d+$/, '')
++          end
 +
 +          # openldap24-client -> openldap-client
 +          name.sub!(/\d+-(client|server)$/, '-\1')
