@@ -8,7 +8,7 @@
 PORTNAME=	mixlib-log
 PORTVERSION=	1.2.0
 CATEGORIES=	devel
-MASTER_SITES=	http://gemcutter.org/gems/
+MASTER_SITES=	RG
 
 MAINTAINER=	renchap@cocoa-x.com
 COMMENT=	A gem that provides a simple mixin for log functionality
@@ -16,8 +16,5 @@ COMMENT=	A gem that provides a simple mixin for log functionality
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=  yes
-
-# we care about not passing -A to allow HTTP redirect
-FETCH_ARGS=     -pRr
 
 .include <bsd.port.mk>
