@@ -7,7 +7,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	0.9.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -26,6 +26,7 @@ RUN_DEPENDS=	rubygem-mixlib-log>=1.2.0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-ohai>=0.5.0:${PORTSDIR}/sysutils/rubygem-ohai \
 		rubygem-uuidtools>0:${PORTSDIR}/devel/rubygem-uuidtools \
 		rubygem-rest-client>=1.0.4:${PORTSDIR}/devel/rubygem-rest-client \
+		rubygem-highline>0:${PORTSDIR}/devel/rubygem-highline \
 		bsdadminscripts>0:${PORTSDIR}/sysutils/bsdadminscripts
 
 USE_RUBY=	yes
