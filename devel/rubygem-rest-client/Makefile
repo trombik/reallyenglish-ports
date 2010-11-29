@@ -28,6 +28,7 @@ RUN_DEPENDS=	rubygem-mime-types>0:${PORTSDIR}/misc/rubygem-mime-types
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
+PLIST_FILES=	bin/restclient
 
 .include <bsd.port.pre.mk>
 .include <bsd.port.post.mk>
