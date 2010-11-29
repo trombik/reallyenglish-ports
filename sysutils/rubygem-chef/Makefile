@@ -6,16 +6,16 @@
 #
 
 PORTNAME=	chef
-PORTVERSION=	0.8.16
-PORTREVISION=	9
+PORTVERSION=	0.9.12
+#PORTREVISION=	9
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
 MAINTAINER=	renchap@cocoa-x.com
 COMMENT=	A systems integration framework. Contains the client part
 
-RUN_DEPENDS=	rubygem-mixlib-log>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-log \
-		rubygem-mixlib-config>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-config \
+RUN_DEPENDS=	rubygem-mixlib-log>=1.2.0:${PORTSDIR}/devel/rubygem-mixlib-log \
+		rubygem-mixlib-config>=1.1.2:${PORTSDIR}/devel/rubygem-mixlib-config \
 		rubygem-mixlib-cli>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-cli \
 		rubygem-mixlib-authentication>=1.1.2:${PORTSDIR}/devel/rubygem-mixlib-authentication \
 		rubygem-extlib>=0.9.14:${PORTSDIR}/devel/rubygem-extlib \
@@ -24,6 +24,7 @@ RUN_DEPENDS=	rubygem-mixlib-log>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-erubis>=0.0.0:${PORTSDIR}/www/rubygem-erubis \
 		rubygem-bunny>=0.6.0:${PORTSDIR}/net/rubygem-bunny \
 		rubygem-ohai>=0.5.0:${PORTSDIR}/sysutils/rubygem-ohai \
+		rubygem-uuidtools>0:${PORTSDIR}/devel/rubygem-uuidtools \
 		bsdadminscripts>0:${PORTSDIR}/sysutils/bsdadminscripts
 
 USE_RUBY=	yes
