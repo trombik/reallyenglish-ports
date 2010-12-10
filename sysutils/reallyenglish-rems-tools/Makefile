@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	reallyenglish-rems-tools
-PORTVERSION=	0.9
+PORTVERSION=	0.11
 #PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dist.reallyenglish.com/${PORTNAME}/
