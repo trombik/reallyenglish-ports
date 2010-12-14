@@ -7,7 +7,7 @@
 
 PORTNAME=	reallyenglish-rems-tools
 PORTVERSION=	0.12
-#PORTREVISION=	1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dist.reallyenglish.com/${PORTNAME}/
 EXTRACT_SUFX=	.tgz
