@@ -1,0 +1,16 @@
+--- uma.orig	2011-01-25 09:07:40.000000000 +0900
++++ uma	2011-01-25 09:09:02.000000000 +0900
+@@ -74,10 +74,10 @@
+ : ${ARCH="$(uname -m)"}
+ branch="$(uname -r | tr '[:upper:]' '[:lower:]')"
+ number="${branch%%.*}"
+-branch="${branch##*-}"
++branch="${branch#*-}"
+ case "$branch" in
+-	release)
+-		branch=$number-$branch
++	release*)
++		branch=$number-${branch%-p*}
+ 	;;
+ 	stable|current)
+ 		branch=${number%%.*}-$branch
