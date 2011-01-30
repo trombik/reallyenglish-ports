@@ -1,0 +1,6 @@
+@comment $FreeBSD$
+%%SITE_PERL%%/HTML/Mason/PSGIHandler.pm
+%%SITE_PERL%%/mach/auto/HTML/Mason/PSGIHandler/.packlist
+@dirrmtry %%SITE_PERL%%/mach/auto/HTML/Mason/PSGIHandler
+@dirrmtry %%SITE_PERL%%/mach/auto/HTML/Mason
+@dirrmtry %%SITE_PERL%%/HTML/Mason
