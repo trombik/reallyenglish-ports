@@ -16,7 +16,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	tomoyukis@smer.jp.reallyenglish.com
 COMMENT=	PSGI handler for HTML::Mason
 
-BUILD_DEPENDS=	\
+RUN_DEPENDS=	\
 	p5-CGI-PSGI>0:${PORTSDIR}/www/p5-CGI-PSGI \
 	p5-HTML-Mason>0:${PORTSDIR}/www/p5-HTML-Mason
 
