@@ -7,7 +7,7 @@
 
 PORTNAME=	reallyenglish-munin-plugins
 PORTVERSION=	1.1
-#PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dist.reallyenglish.com/${PORTNAME}/
 EXTRACT_SUFX=	.tgz
@@ -15,14 +15,10 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	3rd-party munin plugins for reallyenglish
 
-RUN_DEPENDS=	p5-libwww>0:${PORTSDIR}/www/p5-libwww
+RUN_DEPENDS=	p5-libwww>0:${PORTSDIR}/www/p5-libwww \
+	munin-node>0:${PORTSDIR}/sysutils/munin-node
 
 MAKE_ARGS=	DESTDIR=${PREFIX}
+SUB_FILES=	pkg-install
 
-# included plugins:
-#
-# unbound: http://www.unbound.net/documentation/howto_statistics.html
-# http://exchange.munin-monitoring.org/plugins/zfs-filesystem-graph/details
-# http://anders.fupp.net/plugins/munin/open_sockets
-# http://trull.org/~alex/src/FreeBSD/muninplugins
 .include <bsd.port.mk>
