@@ -14,3 +14,4 @@
 %%DATADIR%%/plugins/zfs_fs_
 %%DATADIR%%/plugins/zfsarc-l1
 %%DATADIR%%/plugins/zfsarc-l2
+@dirrmtry %%DATADIR%%/plugins
