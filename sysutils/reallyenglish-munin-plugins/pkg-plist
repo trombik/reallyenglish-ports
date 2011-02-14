@@ -16,3 +16,4 @@
 %%DATADIR%%/plugins/zfsarc-l2
 %%DATADIR%%/plugins/zpool_capacity
 @dirrmtry %%DATADIR%%/plugins
+@dirrmtry %%DATADIR%%
