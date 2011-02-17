@@ -4,6 +4,7 @@
 %%DATADIR%%/plugins/iostat-wait
 %%DATADIR%%/plugins/kmemsum
 %%DATADIR%%/plugins/open_sockets
+%%DATADIR%%/plugins/redis
 %%DATADIR%%/plugins/unbound_munin_
 %%DATADIR%%/plugins/zfs-demand
 %%DATADIR%%/plugins/zfs-general
