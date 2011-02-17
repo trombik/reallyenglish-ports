@@ -6,8 +6,8 @@
 #
 
 PORTNAME=	reallyenglish-munin-plugins
-PORTVERSION=	1.2
-PORTREVISION=	1
+PORTVERSION=	1.3
+#PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dist.reallyenglish.com/${PORTNAME}/
 EXTRACT_SUFX=	.tgz
