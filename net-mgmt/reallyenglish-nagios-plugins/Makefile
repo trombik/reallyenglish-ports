@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	reallyenglish-nagios-plugins
-PORTVERSION=	0.4
+PORTVERSION=	0.5
 #PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://journal.reallyenglish.com/
@@ -16,6 +16,7 @@ MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	Nagios plugins at reallyenglish
 
 RUN_DEPENDS+=	${LOCALBASE}/libexec/nagios/utils.sh:${PORTSDIR}/net-mgmt/nagios-plugins \
+	${SITE_PERL}/Nagios/Plugin.pm:${PORTSDIR}/net-mgmt/p5-Nagios-Plugin \
 	${LOCALBASE}/sbin/megarc:${PORTSDIR}/sysutils/megarc \
 	${LOCALBASE}/sbin/amrstat:${PORTSDIR}/sysutils/amrstat
 
