@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	reallyenglish-nagios-plugins
-PORTVERSION=	0.5
+PORTVERSION=	0.6
 #PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://journal.reallyenglish.com/
