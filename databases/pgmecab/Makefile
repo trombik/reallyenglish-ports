@@ -18,6 +18,10 @@ RUN_DEPENDS=	${LOCALBASE}/lib/mecab/dic/ipadic/matrix.bin:${PORTSDIR}/japanese/m
 
 USE_BZIP2=	Yes
 USE_PGSQL=	Yes
+# XXX dirty hack to make it compile without patch
+# for 8.3 or later, you need this patch
+# http://bugs.gentoo.org/239594
+WANT_PGSQL_VER=	82
 USE_GMAKE=	Yes
 
 # docdir=${DOCSDIR} USE_PGXS=1
