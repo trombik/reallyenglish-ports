@@ -2,7 +2,7 @@
 # Date created:		6 May 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $FreeBSD: ports/lang/ruby18/Makefile,v 1.146 2010/04/06 23:54:52 stas Exp $
+# $FreeBSD: ports/lang/ruby18/Makefile,v 1.151 2010/12/04 07:32:24 ade Exp $
 #
 
 PORTNAME=	ruby
@@ -27,7 +27,7 @@ CONFIGURE_ENV=	CFLAGS="-I${OPENSSLINC} ${CFLAGS}" \
 		CPPFLAGS="-I${OPENSSLINC} ${CPPFLAGS}"
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	aclocal:110 autoconf:262
+USE_AUTOTOOLS=	aclocal autoconf
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 AUTOMAKE_ARGS=	--add-missing
 
@@ -67,7 +67,7 @@ WITHOUT_PTHREADS=	yes
 
 .if defined(WITHOUT_PTHREADS)
 CONFIGURE_ARGS+=--disable-pthread
-#PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
 .else
 LDFLAGS+=	${PTHREAD_LIBS}
 CONFIGURE_ARGS+=--enable-pthread
@@ -81,11 +81,6 @@ ONIGURUMA_WRKSRC=`cd ${ONIGURUMA_PORTDIR}; ${MAKE} -V WRKSRC`
 PLIST_SUB+=	ONIGURUMA=""
 .else
 PLIST_SUB+=	ONIGURUMA="@comment "
-.endif
-
-.if defined(WITH_DEBUG)
-CFLAGS+=	-g
-STRIP=		# none
 .endif
 
 #
