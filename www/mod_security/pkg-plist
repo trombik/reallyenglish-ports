@@ -1,0 +1,4 @@
+bin/rules-updater.pl
+%%PORTDOCS%%%%DOCSDIR%%/Reference_Manual.html
+%%PORTDOCS%%%%DOCSDIR%%/CHANGES
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
