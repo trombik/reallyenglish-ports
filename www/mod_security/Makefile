@@ -38,7 +38,7 @@ PLIST_FILES+=	bin/mlogc \
 .endif
 
 .if defined(WITH_LUA)
-IGNORE=		LUA support is not tested
+IGNORE=		because LUA support is not tested
 USE_LUA=	5.1+
 CONFIGURE_ARGS+=	--with-lua=${LOCALBASE}
 LIB_DEPENDS+=	lua-5.1.1:${PORTSDIR}/lang/lua
@@ -66,11 +66,11 @@ do-install:
 	make -C ${WRKSRC} install
 
 post-install:
-	${RM} ${LOCALBASE}/lib/mod_security2.so
+	${RM} ${PREFIX}/lib/mod_security2.so
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/Reference_Manual.html ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/CHANGES ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
 .endif
 .if defined(WITH_MLOGC)
 	${INSTALL_PROGRAM} ${WRKSRC}/mlogc/mlogc ${PREFIX}/bin/
