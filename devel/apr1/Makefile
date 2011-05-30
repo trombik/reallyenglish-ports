@@ -22,7 +22,7 @@ OPTIONS=	THREADS "Enable Threads in apr"				on  \
 		IPV6	"Enable IPV6 Support in apr"			on  \
 		BDB	"Enable Berkley BDB support in apr-util"	on  \
 		GDBM	"Enable GNU dbm support in apr-util"		on  \
-		LDAP	"Enable LDAP support in apr-util"		off \
+		LDAP	"Enable LDAP support in apr-util"		on \
 		MYSQL	"Enable MySQL suport in apr-util"		off \
 		NDBM	"Enable NDBM support in apr-util"		off \
 		PGSQL	"Enable Postgresql suport in apr-util"		off \
