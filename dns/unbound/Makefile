@@ -52,7 +52,7 @@ PYTHON=
 PYTHON=		"@comment "
 .endif
 
-.if defined(WITH_GOST)
+.if !defined(WITHOUT_GOST)
 WITH_OPENSSL_PORT=	yes
 .else
 CONFIGURE_ARGS+=	--disable-gost
